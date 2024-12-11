@@ -1,0 +1,100 @@
+// Переменные цвета  
+$background-color: #FFFFFF;  
+$primary-color: #1A5CE5;  
+$primary-hover-color: #054c97; // Более темный оттенок для наведения  
+$secondary-color: #637087;  
+$button-light-bg: #ffffff;  
+$button-light-border: #d4d4d4;  
+$button-light-hover-bg: #c5c3c3;  
+
+// Основные стили  
+body {  
+    background-color: $background-color;  
+    font-family: Manrope, sans-serif;  
+}  
+
+h1 {  
+    font-weight: bold;  
+}  
+
+.progress {  
+    height: 10px;  
+    border-radius: 15px;
+    
+}  
+
+.text-center {  
+    display: flex; /* Используем Flexbox */  
+    justify-content: flex-end; /* Выровнять по правому краю */  
+    margin-top: 20px;  
+}  
+
+.text-center button {  
+    margin-right: 10px; /* Отступ между кнопками */  
+}  
+
+.text-center button:last-child {  
+    margin-right: 0; /* Убираем отступ у последней кнопки */  
+}
+
+// Кнопки  
+.btn {  
+    border-radius: 15px; // Закругляем все кнопки  
+}  
+
+.btn-light {  
+    background-color: $button-light-bg;  
+    border: 1px solid $button-light-border;  
+    border-radius: 15px; // Закругляем  
+    &:hover {  
+        background-color: $button-light-hover-bg;  
+    }  
+}  
+
+.btn-secondary {  
+    background-color: $secondary-color;  
+    color: white;  
+    border-radius: 15px; // Закругляем  
+}  
+
+.btn-primary {  
+    background-color: $primary-color;  
+    color: white;  
+    border-radius: 15px; // Закругляем  
+    &:hover {  
+        background-color: $primary-hover-color;  
+    }  
+}  
+
+.btn + .btn {  
+    margin-left: 20px; /* Укажите желаемое значение отступа */  
+}
+
+// Кнопка "Купить Pro"  
+.navbar {  
+    background-color: #FFFFFF; // Измените фон на белый  
+ 
+  
+    .navbar-nav .nav-item {  
+        margin-right: 20px; // Добавляем отступ между кнопками меню  
+    }  
+
+    .logo-img {  
+        width: 40px; // Ширина логотипа  
+        height: auto; // Автоматическая высота  
+        margin-right: 10px; // Отступ справа от логотипа  
+    }  
+}
+
+.btn-pro {  
+    background-color: #007bff; // Синий фон  
+    color: white; // Белый шрифт  
+    border-radius: 15px; // Закругленные углы  
+    padding: 10px 20px; // Добавляем немного отступов для большей удобочитаемости  
+
+    &:hover {  
+        background-color: #0056b3; // Более темный оттенок для наведения  
+        color: white; // Белый текст при наведении  
+    }  
+}  
+

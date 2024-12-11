@@ -1,0 +1,85 @@
+@charset "UTF-8";
+body {
+  background-color: #FFFFFF;
+  font-family: Manrope, sans-serif;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+.progress {
+  height: 10px;
+  border-radius: 15px;
+}
+
+.text-center {
+  display: flex; /* Используем Flexbox */
+  justify-content: flex-end; /* Выровнять по правому краю */
+  margin-top: 20px;
+}
+
+.text-center button {
+  margin-right: 10px; /* Отступ между кнопками */
+}
+
+.text-center button:last-child {
+  margin-right: 0; /* Убираем отступ у последней кнопки */
+}
+
+.btn {
+  border-radius: 15px;
+}
+
+.btn-light {
+  background-color: #ffffff;
+  border: 1px solid #d4d4d4;
+  border-radius: 15px;
+}
+.btn-light:hover {
+  background-color: #c5c3c3;
+}
+
+.btn-secondary {
+  background-color: #637087;
+  color: white;
+  border-radius: 15px;
+}
+
+.btn-primary {
+  background-color: #1A5CE5;
+  color: white;
+  border-radius: 15px;
+}
+.btn-primary:hover {
+  background-color: #054c97;
+}
+
+.btn + .btn {
+  margin-left: 20px; /* Укажите желаемое значение отступа */
+}
+
+.navbar {
+  background-color: #FFFFFF;
+}
+.navbar .navbar-nav .nav-item {
+  margin-right: 20px;
+}
+.navbar .logo-img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.btn-pro {
+  background-color: #007bff;
+  color: white;
+  border-radius: 15px;
+  padding: 10px 20px;
+}
+.btn-pro:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/*# sourceMappingURL=styles.css.map */

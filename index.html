@@ -1,0 +1,164 @@
+<!DOCTYPE html>  
+<html lang="ru">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+    <link rel="stylesheet" href="styles.css">  
+    <title>Математический задачник</title>  
+</head>  
+<body>  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">  
+        <a class="navbar-brand d-flex align-items-center" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\1\index.html">  
+            <img src="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\image\logo.jpg" alt="Логотип" class="logo-img">  
+            Математический задачник  
+        </a>  
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">  
+            <span class="navbar-toggler-icon"></span>  
+        </button>  
+        <div class="collapse navbar-collapse" id="navbarNav">  
+            <ul class="navbar-nav ml-auto">  
+            <ul class="navbar-nav">  
+                <li class="nav-item">  
+                    <a class="nav-link" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\4\page4.html">О нас</a>  
+                </li>  
+                <li class="nav-item">  
+                    <a class="nav-link" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\1\index.html">Ввод заданий</a>  
+                </li>  
+                <li class="nav-item">  
+                    <a class="nav-link" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\5\page5.html">Личный кабинет</a>  
+                </li>  
+            </ul>  
+            <a class="btn btn-pro ml-auto" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\5\page5.html">Купить Pro</a>   
+        </div>  
+    </nav>  
+    
+    <div class="container mt-5">  
+        <h2 class="text-center">Шаг 1</h2>  
+        
+        <div class="form-group">  
+            <label for="taskSelect" class="h5">Выберите алгебраическую задачу</label>  
+            <select id="taskSelect" class="form-control" onchange="showVariableInputs()">  
+                <option value="" disabled selected>-- Выберите задачу --</option>  
+                <optgroup label="Уравнения">  
+                    <option value="linear">Линейные уравнения ax + b = 0</option>  
+                    <option value="quadratic">Квадратные уравнения ax^2 + bx + c = 0</option>  
+                    <option value="cubic">Кубические уравнения ax^3 + bx^2 + cx + d = 0</option>  
+                    <option value="rational">Рациональные уравнения \frac{x}{x+1} = 2</option>  
+                    <option value="exponential">Показательные уравнения 2^{x} = 16</option>  
+                </optgroup>  
+                <optgroup label="Неравенства">  
+                    <option value="linear_inequality">Линейные неравенства ax + b > 0</option>  
+                    <option value="quadratic_inequality">Квадратичные неравенства ax^2 + bx + c < 0</option>  
+                    <option value="irrational_inequality">Иррациональные неравенства sqrt{x} > 2</option>  
+                </optgroup>  
+            </select>  
+        </div>  
+
+        <div id="variableInputs" style="display: none;">  
+            <!-- Поля для ввода переменных будут добавлены здесь динамически -->  
+        </div>  
+
+        <div class="form-group" style="display: none;" id="xInputContainer">  
+            <label for="x">Введите значение x:</label>  
+            <input type="number" id="x" class="form-control" required>  
+        </div>  
+        
+        <div class="d-flex justify-content-center mb-4">  
+            <a href="C:/Users/mvide/OneDrive/Рабочий стол/Лабы 3/Курсач/sai/1/index.html" class="btn btn-secondary">Отменить</a>  
+            <button class="btn btn-primary" id="nextButton" style="display: inline-block;" onclick="navigateToSolution()">Далее</button>  
+        </div>   
+    </div>  
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+    <script>  
+        function showVariableInputs() {  
+            const taskSelect = document.getElementById('taskSelect');  
+            const variableInputs = document.getElementById('variableInputs');  
+            const nextButton = document.getElementById('nextButton');  
+            const xInputContainer = document.getElementById('xInputContainer');  
+    
+            variableInputs.innerHTML = ''; // Очистить предыдущие поля  
+            xInputContainer.style.display = 'none'; // Скрыть поле для x при новом выборе  
+    
+            if (taskSelect.value) {  
+                variableInputs.style.display = 'block';  
+                nextButton.style.display = 'inline-block';  
+    
+                let inputsHTML = '';  
+    
+                switch (taskSelect.value) {  
+                    case 'linear':  
+                        inputsHTML += '<label for="a">Введите a:</label><input type="number" id="a" class="form-control" required>';  
+                        inputsHTML += '<label for="b">Введите b:</label><input type="number" id="b" class="form-control" required>';  
+                        break;  
+                    case 'quadratic':  
+                        inputsHTML += '<label for="a">Введите a:</label><input type="number" id="a" class="form-control" required>';  
+                        inputsHTML += '<label for="b">Введите b:</label><input type="number" id="b" class="form-control" required>';  
+                        inputsHTML += '<label for="c">Введите c:</label><input type="number" id="c" class="form-control" required>';  
+                        break;  
+                    case 'cubic':  
+                        inputsHTML += '<label for="a">Введите a:</label><input type="number" id="a" class="form-control" required>';  
+                        inputsHTML += '<label for="b">Введите b:</label><input type="number" id="b" class="form-control" required>';  
+                        inputsHTML += '<label for="c">Введите c:</label><input type="number" id="c" class="form-control" required>';  
+                        inputsHTML += '<label for="d">Введите d:</label><input type="number" id="d" class="form-control" required>';  
+                        break;  
+                    case 'rational':  
+                        inputsHTML += '<label for="numerator">Введите числитель:</label><input type="number" id="numerator" class="form-control" required>';  
+                        inputsHTML += '<label for="denominator">Введите знаменатель:</label><input type="number" id="denominator" class="form-control" required>';  
+                        break;  
+                    case 'exponential':  
+                        inputsHTML += '<label for="base">Введите основание:</label><input type="number" id="base" class="form-control" required>';  
+                        break;  
+                    case 'linear_inequality':  
+                        inputsHTML += '<label for="a">Введите a:</label><input type="number" id="a" class="form-control" required>';  
+                        inputsHTML += '<label for="b">Введите b:</label><input type="number" id="b" class="form-control" required>';  
+                        break;  
+                    case 'quadratic_inequality':  
+                        inputsHTML += '<label for="a">Введите a:</label><input type="number" id="a" class="form-control" required>';  
+                        inputsHTML += '<label for="b">Введите b:</label><input type="number" id="b" class="form-control" required>';  
+                        inputsHTML += '<label for="c">Введите c:</label><input type="number" id="c" class="form-control" required>';  
+                        break;  
+                    case 'irrational_inequality':  
+                        inputsHTML += '<label for="x">Введите значение x:</label><input type="number" id="x" class="form-control" required>';  
+                        break;  
+                }  
+    
+                variableInputs.innerHTML = inputsHTML;  
+                xInputContainer.style.display = 'block'; // Показать поле для ввода x  
+            } else {  
+                variableInputs.style.display = 'none';  
+                nextButton.style.display = 'none';  
+                xInputContainer.style.display = 'none';  
+            }  
+        }  
+
+        function navigateToSolution() {  
+    const taskType = document.getElementById('taskSelect').value;  
+    let params = `taskType=${taskType}`;  
+    let a = document.getElementById('a') ? document.getElementById('a').value : null;  
+    let b = document.getElementById('b') ? document.getElementById('b').value : null;  
+    let c = document.getElementById('c') ? document.getElementById('c').value : null;  
+    let d = document.getElementById('d') ? document.getElementById('d').value : null;  
+    let numerator = document.getElementById('numerator') ? document.getElementById('numerator').value : null;  
+    let denominator = document.getElementById('denominator') ? document.getElementById('denominator').value : null;  
+    let base = document.getElementById('base') ? document.getElementById('base').value : null;  
+    let x = document.getElementById('x') ? document.getElementById('x').value : null;  
+
+    if (a !== null) params += `&a=${a}`;  
+    if (b !== null) params += `&b=${b}`;  
+    if (c !== null) params += `&c=${c}`;  
+    if (d !== null) params += `&d=${d}`;  
+    if (numerator !== null) params += `&numerator=${numerator}`;  
+    if (denominator !== null) params += `&denominator=${denominator}`;  
+    if (base !== null) params += `&base=${base}`;  
+    if (x !== null) params += `&x=${x}`;  
+
+    console.log(`Navigating to: file:///C:/Users/mvide/OneDrive/Рабочий%20стол/Лабы%203/Курсач/sai/2/pages2.html?${params}`);  
+    window.location.href = `file:///C:/Users/mvide/OneDrive/Рабочий%20стол/Лабы%203/Курсач/sai/2/pages2.html?${params}`;  
+}
+    </script>  
+</body>  
+</html>
