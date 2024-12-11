@@ -1,0 +1,216 @@
+<!DOCTYPE html>  
+<html lang="ru">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+    <link rel="stylesheet" href="styles.css">  
+    <title>Математический задачник - Ответ на задачу</title>  
+</head>  
+<body class="bg-white">  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">  
+        <a class="navbar-brand d-flex align-items-center" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\1\index.html">  
+            <img src="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\image\logo.jpg" alt="Логотип" class="logo-img">  
+            Математический задачник  
+        </a>  
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">  
+            <span class="navbar-toggler-icon"></span>  
+        </button>  
+        <div class="collapse navbar-collapse" id="navbarNav">  
+            <ul class="navbar-nav ml-auto">  
+            <ul class="navbar-nav">  
+                <li class="nav-item">  
+                    <a class="nav-link" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\4\page4.html">О нас</a>  
+                </li>  
+                <li class="nav-item">  
+                    <a class="nav-link" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\1\index.html">Ввод заданий</a>  
+                </li>  
+                <li class="nav-item">  
+                    <a class="nav-link" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\5\page5.html">Личный кабинет</a>  
+                </li>  
+            </ul>  
+            <a class="btn btn-pro ml-auto" href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\5\page5.html">Купить Pro</a>   
+        </div>  
+    </nav>  
+
+    <div class="container mt-5">  
+        <div class="d-flex justify-content-between">  
+            <h3 class="text-center">Шаг 2</h3>  
+            <p class="text-center" id="resultMessage"></p>  
+        </div>    
+        
+        <div class="progress mb-4">  
+            <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>  
+        </div>  
+        
+        <div class="question-container">  
+            <h3>Задача</h3>  
+            <div class="mb-3">  
+                <p id="taskDisplay">Ваша задача: </p>  
+            </div>  
+            <p id="answerDisplay">Ваш ответ: </p>  
+        </div>  
+        
+        <div class="d-flex justify-content-end mb-4">  
+            <a href="C:\Users\mvide\OneDrive\Рабочий стол\Лабы 3\Курсач\sai\1\index.html" class="btn btn-light me-2">Назад</a>  
+            <button class="btn btn-primary" onclick="calculateAnswer()">Решить задачу</button>  
+            <button class="btn btn-secondary ms-2" id="explainButton">Объяснить</button>  
+        </div>  
+    </div>  
+
+    <script>  
+        const params = new URLSearchParams(window.location.search);  
+        const taskType = params.get('taskType');  
+        const variableValues = {  
+            a: parseFloat(params.get('a')),  
+            b: parseFloat(params.get('b')),  
+            c: parseFloat(params.get('c')),  
+            d: parseFloat(params.get('d')),  
+            numerator: parseFloat(params.get('numerator')),  
+            denominator: parseFloat(params.get('denominator')),  
+            base: parseFloat(params.get('base')),  
+            x: parseFloat(params.get('x'))  
+        };  
+
+        const taskDisplay = document.getElementById('taskDisplay');  
+        const answerDisplay = document.getElementById('answerDisplay');  
+
+        function displayTask() {  
+            switch (taskType) {  
+                case 'linear':  
+                    taskDisplay.innerText = `Ваша задача: решить уравнение ${variableValues.a}x + ${variableValues.b} = 0`;  
+                    break;  
+                case 'quadratic':  
+                    taskDisplay.innerText = `Ваша задача: решить уравнение ${variableValues.a}x² + ${variableValues.b}x + ${variableValues.c} = 0`;  
+                    break;  
+                case 'cubic':  
+                    taskDisplay.innerText = `Ваша задача: решить уравнение ${variableValues.a}x³ + ${variableValues.b}x² + ${variableValues.c}x + ${variableValues.d} = 0`;  
+                    break;  
+                case 'rational':  
+                    taskDisplay.innerText = `Ваша задача: решить уравнение ${variableValues.numerator} / ${variableValues.denominator} = 0`;  
+                    break;  
+                case 'exponential':  
+                    taskDisplay.innerText = `Ваша задача: решить уравнение ${variableValues.base}^x = 0`;  
+                    break;  
+                case 'linear_inequality':  
+                    taskDisplay.innerText = `Ваша задача: решить неравенство ${variableValues.a}x + ${variableValues.b} > 0`;  
+                    break;  
+                case 'quadratic_inequality':  
+                    taskDisplay.innerText = `Ваша задача: решить неравенство ${variableValues.a}x² + ${variableValues.b}x + ${variableValues.c} > 0`;  
+                    break;  
+                case 'irrational_inequality':  
+                    taskDisplay.innerText = `Ваша задача: решить неравенство √x < 0`;  
+                    break;  
+                default:  
+                    taskDisplay.innerText = 'Неизвестный тип задачи.';  
+            }  
+        }  
+
+        function calculateAnswer() {  
+            let answer = '';  
+            switch (taskType) {  
+                case 'linear':  
+                    answer = -(variableValues.b / variableValues.a);  
+                    break;  
+                case 'quadratic':  
+                    const discriminant = Math.pow(variableValues.b, 2) - 4 * variableValues.a * variableValues.c;  
+                    if (discriminant < 0) {  
+                        answer = 'Нет действительных решений.';  
+                    } else if (discriminant === 0) {  
+                        answer = -variableValues.b / (2 * variableValues.a);  
+                    } else {  
+                        const x1 = (-variableValues.b + Math.sqrt(discriminant)) / (2 * variableValues.a);  
+                        const x2 = (-variableValues.b - Math.sqrt(discriminant)) / (2 * variableValues.a);  
+                        answer = `x₁ = ${x1}, x₂ = ${x2}`;  
+                    }  
+                    break;  
+                case 'cubic':  
+                    answer = solveCubic(variableValues.a, variableValues.b, variableValues.c, variableValues.d);  
+                    break;  
+                case 'rational':  
+                    answer = (variableValues.numerator === 0) ? 'Уравнение всегда истинно.' : 'Уравнение не имеет решений.';  
+                    break;  
+                case 'exponential':  
+                    answer = 'Показательное уравнение не имеет решений при положительном основании.';  
+                    break;  
+                case 'linear_inequality':  
+                    answer = `x > ${-(variableValues.b / variableValues.a)}`;  
+                    break;  
+                case 'quadratic_inequality':  
+                    const discriminantQ = Math.pow(variableValues.b, 2) - 4 * variableValues.a * variableValues.c;  
+                    if (discriminantQ < 0) {  
+                        answer = variableValues.a > 0 ? 'x ∈ (-∞, +∞)' : 'Нет решений.';  
+                    } else {  
+                        const x1Q = (-variableValues.b + Math.sqrt(discriminantQ)) / (2 * variableValues.a);  
+                        const x2Q = (-variableValues.b - Math.sqrt(discriminantQ)) / (2 * variableValues.a);  
+                        answer = variableValues.a > 0 ? `Решение: x < ${x1Q} или x > ${x2Q}` : `Решение: ${x1Q} < x < ${x2Q}`;  
+                    }  
+                    break;  
+                case 'irrational_inequality':  
+                    answer = 'Неравенство √x < 0 не имеет решений для действительных x.';  
+                    break;  
+                default:  
+                    answer = 'Ошибка в вычислении.';  
+            }  
+
+            answerDisplay.innerText = `Ваш ответ: ${answer}`;  
+        }  
+
+        function solveCubic(a, b, c, d) {  
+            // Применим метод Кардано для решения кубических уравнений  
+            const f = ((3 * b) / a - (b * b) / (a * a)) / 3;  
+            const g = ((2 * (b ** 3)) / (a ** 3) - (9 * b * c) / (a ** 2) + (27 * d) / a) / 27;  
+            const h = (g ** 2) / 4 + (f ** 3) / 27;  
+
+            let roots = [];  
+
+            if (h > 0) {  
+                const R = -(g / 2) + Math.sqrt(h);  
+                const S = Math.cbrt(R);  
+                const T = -(g / 2) - Math.sqrt(h);  
+                const U = Math.cbrt(T);  
+
+                roots.push((S + U) - (b / (3 * a)));  
+            } else if (h === 0) {  
+                const R = -(g / 2);  
+                const S = Math.cbrt(R);  
+                roots.push(2 * S - (b / (3 * a)));  
+                roots.push(-S - (b / (3 * a)));  
+            } else {  
+                const i = Math.sqrt((g ** 2 / 4) - h);  
+                const j = Math.cbrt(i);  
+                const k = Math.acos(-(g / (2 * i)));  
+                const L = j * -1;  
+                const M = Math.cos(k / 3);  
+                const N = Math.sqrt(3) * Math.sin(k / 3);  
+                roots.push(2 * j * Math.cos(k / 3) - (b / (3 * a)));  
+                roots.push(L * (M + N) - (b / (3 * a)));  
+                roots.push(L * (M - N) - (b / (3 * a)));  
+            }  
+
+            return roots.length > 0 ? `Корни кубического уравнения: ${roots.join(', ')}` : 'Нет действительных корней.';  
+        }  
+
+        // Добавляем обработчик для кнопки объяснения  
+        document.getElementById('explainButton').onclick = function() {  
+            const explanations = {  
+                taskType: taskType,  
+                a: variableValues.a,  
+                b: variableValues.b,  
+                c: variableValues.c,  
+                d: variableValues.d,  
+                numerator: variableValues.numerator,  
+                denominator: variableValues.denominator,  
+                base: variableValues.base,  
+                x: variableValues.x  
+            };  
+
+            const queryString = new URLSearchParams(explanations).toString();  
+            window.location.href = `C:\\Users\\mvide\\OneDrive\\Рабочий стол\\Лабы 3\\Курсач\\sai\\3\\page3.html?${queryString}`;  
+        };  
+
+        // Выводим задачу при загрузке страницы  
+        displayTask();  
+    </script>  
+</body>  
+</html>

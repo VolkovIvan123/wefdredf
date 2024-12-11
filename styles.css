@@ -1,33 +1,33 @@
-@charset "UTF-8";
 body {
   background-color: #FFFFFF;
-  font-family: Manrope, sans-serif;
-}
-
-h1 {
-  font-weight: bold;
+  font-family: Arial, sans-serif;
 }
 
 .progress {
-  height: 10px;
+  height: 20px;
+  border-radius: 15px;
+}
+
+.progress-bar {
   border-radius: 15px;
 }
 
 .text-center {
-  display: flex; /* Используем Flexbox */
-  justify-content: flex-end; /* Выровнять по правому краю */
   margin-top: 20px;
 }
 
-.text-center button {
-  margin-right: 10px; /* Отступ между кнопками */
+.question-container {
+  margin-top: 30px;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 15px;
 }
 
-.text-center button:last-child {
-  margin-right: 0; /* Убираем отступ у последней кнопки */
+.question {
+  font-weight: bold;
 }
 
-.btn {
+.form-control {
   border-radius: 15px;
 }
 
@@ -40,23 +40,21 @@ h1 {
   background-color: #c5c3c3;
 }
 
-.btn-secondary {
-  background-color: #637087;
-  color: white;
-  border-radius: 15px;
-}
-
 .btn-primary {
   background-color: #1A5CE5;
   color: white;
   border-radius: 15px;
 }
 .btn-primary:hover {
-  background-color: #054c97;
+  background-color: #0056b3;
 }
 
-.btn + .btn {
-  margin-left: 20px; /* Укажите желаемое значение отступа */
+.btn {
+  margin-right: 10px;
+}
+
+.btn:last-child {
+  margin-right: 0;
 }
 
 .navbar {

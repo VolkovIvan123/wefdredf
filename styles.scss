@@ -1,4 +1,3 @@
-// Переменные цвета  
 $background-color: #FFFFFF;  
 $primary-color: #1A5CE5;  
 $primary-hover-color: #054c97; // Более темный оттенок для наведения  
@@ -10,67 +9,67 @@ $button-light-hover-bg: #c5c3c3;
 // Основные стили  
 body {  
     background-color: $background-color;  
-    font-family: Manrope, sans-serif;  
-}  
-
-h1 {  
-    font-weight: bold;  
+    font-family: Arial, sans-serif;  
 }  
 
 .progress {  
-    height: 10px;  
-    border-radius: 15px;
-    
+    height: 20px;  
+    border-radius: 15px; // Скругление прогресс-бара  
+}  
+
+.progress-bar {  
+    border-radius: 15px; // Скругление прогресс-бара  
 }  
 
 .text-center {  
-    display: flex; /* Используем Flexbox */  
-    justify-content: flex-end; /* Выровнять по правому краю */  
     margin-top: 20px;  
 }  
 
-.text-center button {  
-    margin-right: 10px; /* Отступ между кнопками */  
+.question-container {  
+    margin-top: 30px;  
+    border-radius: 15px; // Скругление контейнера вопроса  
+    background-color: #fff; // Фон контейнера  
+    padding: 15px; // Отступы внутри контейнера  
 }  
 
-.text-center button:last-child {  
-    margin-right: 0; /* Убираем отступ у последней кнопки */  
-}
+.question {  
+    font-weight: bold;  
+}  
+
+// Стили для текстового поля  
+.form-control {  
+    border-radius: 15px; // Скругление текстового поля  
+}  
 
 // Кнопки  
-.btn {  
-    border-radius: 15px; // Закругляем все кнопки  
-}  
-
 .btn-light {  
     background-color: $button-light-bg;  
     border: 1px solid $button-light-border;  
-    border-radius: 15px; // Закругляем  
+    border-radius: 15px; // Скругление кнопок  
+
     &:hover {  
         background-color: $button-light-hover-bg;  
     }  
 }  
 
-.btn-secondary {  
-    background-color: $secondary-color;  
-    color: white;  
-    border-radius: 15px; // Закругляем  
-}  
-
 .btn-primary {  
     background-color: $primary-color;  
     color: white;  
-    border-radius: 15px; // Закругляем  
-    &:hover {  
-        background-color: $primary-hover-color;  
-    }  
-}  
+    border-radius: 15px; // Скругление кнопок  
 
-.btn + .btn {  
-    margin-left: 20px; /* Укажите желаемое значение отступа */  
+    &:hover {  
+        background-color: #0056b3; // Темный оттенок для наведения  
+    }  
 }
 
-// Кнопка "Купить Pro"  
+.btn {  
+    margin-right: 10px; // Отступ между кнопками  
+}  
+
+.btn:last-child {  
+    margin-right: 0; // Убираем отступ у последней кнопки  
+}
+
 .navbar {  
     background-color: #FFFFFF; // Измените фон на белый  
  
@@ -97,4 +96,3 @@ h1 {
         color: white; // Белый текст при наведении  
     }  
 }  
-
